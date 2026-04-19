@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Rivière — Restaurant Gastronomique à Saint-Avold | Cuisine du Terroir</title>
+  <meta name="description" content="Maison Rivière, restaurant gastronomique à Saint-Avold. Cuisine du terroir lorrain, produits frais du marché, cave à vins sélectionnée. Réservez votre table : 03 87 00 00 00.">
+  <meta name="keywords" content="restaurant Saint-Avold, restaurant gastronomique Moselle, meilleur restaurant Saint-Avold, restaurant terroir Lorraine, restaurant Forbach Metz">
+  <meta property="og:title" content="Maison Rivière — Restaurant Gastronomique à Saint-Avold">
+  <meta property="og:description" content="Cuisine du terroir lorrain, produits frais du marché. Réservez votre table : 03 87 00 00 00.">
+  <meta property="og:type" content="restaurant">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Restaurant","name":"Maison Rivière","telephone":"03 87 00 00 00","address":{"@type":"PostalAddress","streetAddress":"12 Rue du Général de Gaulle","addressLocality":"Saint-Avold","postalCode":"57500","addressCountry":"FR"},"openingHours":["Tu-Sa 12:00-14:00","Tu-Sa 19:00-22:00","Su 12:00-14:30"],"servesCuisine":"Française","priceRange":"€€€","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"214"}}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --c-bg:      #FEFBF6;
+      --c-bg2:     #F5EDE0;
+      --c-bg3:     #EDE4D4;
+      --c-bord:    #8B1A2E;
+      --c-gold:    #9A7020;
+      --c-gold-l:  #C49535;
+      --c-text:    #1A1209;
+      --c-dim:     #5C4838;
+      --c-muted:   #9A8473;
+      --c-card:    #FFFFFF;
+      --c-line:    rgba(26,18,9,.1);
+      --c-lineg:   rgba(154,112,32,.25);
+      --ff-title:  'Playfair Display', serif;
+      --ff-body:   'Lato', sans-serif;
+      --ff-italic: 'Cormorant Garamond', serif;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--ff-body); background:var(--c-bg); color:var(--c-text); overflow-x:hidden; }
+
+    /* Grain subtil */
+    body::after {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.025;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Reveals */
+    [data-r] { opacity:0; transform:translateY(36px); transition:opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+    [data-r="l"] { transform:translateX(-36px); }
+    [data-r="r"] { transform:translateX(36px); }
+    [data-r="s"] { transform:scale(.93); }
+    [data-r].on  { opacity:1; transform:none; }
+
+    /* ─── NAV ─── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      padding:1.5rem 4rem;
+      display:flex; align-items:center; justify-content:space-between;
+      transition:background .4s, padding .4s, box-shadow .4s;
+    }
+    nav.stuck {
+      background:rgba(254,251,246,.95); backdrop-filter:blur(12px);
+      padding:1rem 4rem; box-shadow:0 1px 0 var(--c-line);
+    }
+    .nav-logo { text-decoration:none; }
+    .nav-logo-name { font-family:var(--ff-title); font-size:1.3rem; font-weight:700; color:var(--c-bord); letter-spacing:.12em; text-transform:uppercase; display:block; }
+    .nav-logo-sub { font-size:.6rem; letter-spacing:.35em; text-transform:uppercase; color:var(--c-muted); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--c-dim); text-decoration:none; transition:color .25s; }
+    .nav-links a:hover { color:var(--c-bord); }
+    .nav-cta {
+      display:flex; align-items:center; gap:.45rem;
+      font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+      color:#fff; background:var(--c-bord); padding:.75rem 1.5rem; border-radius:2px;
+      text-decoration:none; transition:background .3s, transform .3s;
+    }
+    .nav-cta:hover { background:#6B1223; transform:translateY(-1px); }
+    .nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .nav-burger span { width:24px; height:1.5px; background:var(--c-text); display:block; }
+
+    /* ─── HERO ─── */
+    .hero {
+      display:grid; grid-template-columns:1fr 1fr;
+      min-height:100vh; overflow:hidden;
+    }
+    .hero-left {
+      display:flex; flex-direction:column; justify-content:center;
+      padding:8rem 4rem 4rem 5rem; background:var(--c-bg); position:relative; z-index:1;
+    }
+    .hero-eyebrow {
+      font-size:.65rem; font-weight:700; letter-spacing:.4em; text-transform:uppercase;
+      color:var(--c-gold); display:flex; align-items:center; gap:.8rem; margin-bottom:2rem;
+    }
+    .hero-eyebrow::before { content:''; width:32px; height:1px; background:var(--c-gold); flex-shrink:0; }
+    h1.hero-title {
+      font-family:var(--ff-title); font-size:clamp(3.2rem,5.5vw,6rem);
+      font-weight:900; line-height:.95; letter-spacing:-.02em; color:var(--c-text); margin-bottom:.8rem;
+    }
+    h1.hero-title em { font-style:italic; color:var(--c-bord); display:block; }
+    .hero-sub {
+      font-family:var(--ff-italic); font-size:clamp(.95rem,1.4vw,1.25rem);
+      font-style:italic; font-weight:300; color:var(--c-dim); line-height:1.65;
+      max-width:380px; margin-bottom:2.5rem;
+    }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-prim {
+      display:inline-flex; align-items:center; gap:.5rem;
+      font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+      color:#fff; background:var(--c-bord); padding:1rem 2rem; border-radius:2px;
+      text-decoration:none; min-height:48px; transition:all .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    .btn-prim:hover { background:#6B1223; transform:translateY(-3px); box-shadow:0 12px 32px rgba(139,26,46,.25); }
+    .btn-sec {
+      display:inline-flex; align-items:center; gap:.5rem;
+      font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--c-text); border:1.5px solid var(--c-line); padding:1rem 2rem; border-radius:2px;
+      text-decoration:none; min-height:48px; transition:all .3s;
+    }
+    .btn-sec:hover { border-color:var(--c-bord); color:var(--c-bord); }
+    .hero-social-proof {
+      margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--c-line);
+      display:flex; align-items:center; gap:1.25rem;
+    }
+    .gstars { color:#F5A623; font-size:1rem; letter-spacing:3px; }
+    .gtext { font-size:.8rem; color:var(--c-dim); }
+    .gtext strong { color:var(--c-text); font-size:1.05rem; }
+    .hero-sep { width:1px; height:36px; background:var(--c-line); }
+
+    .hero-right {
+      position:relative; overflow:hidden;
+      min-height:100vh;
+      background-size:cover; background-position:center;
+      background-color:var(--c-bg3);
+      transition:background-size 8s ease;
+    }
+    .hero-right::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(to right, var(--c-bg) 0%, transparent 30%);
+      z-index:1;
+    }
+    .hero-right::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(254,251,246,.3) 0%, transparent 60%);
+      z-index:1;
+    }
+    .hero-badge {
+      position:absolute; bottom:2.5rem; right:2.5rem; z-index:3;
+      background:rgba(254,251,246,.92); backdrop-filter:blur(10px);
+      border:1px solid var(--c-lineg); padding:1.25rem 1.5rem; border-radius:4px; text-align:center;
+    }
+    .hero-badge-n { font-family:var(--ff-title); font-size:2rem; font-weight:900; color:var(--c-bord); line-height:1; }
+    .hero-badge-l { font-size:.6rem; letter-spacing:.25em; text-transform:uppercase; color:var(--c-muted); margin-top:4px; display:block; }
+
+    /* ─── RUBAN ─── */
+    .ribbon {
+      background:var(--c-bord); padding:.9rem 0; overflow:hidden;
+    }
+    .ribbon-track { display:flex; gap:3.5rem; white-space:nowrap; animation:scroll 22s linear infinite; }
+    .ribbon-item { display:flex; align-items:center; gap:.65rem; font-size:.62rem; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:rgba(255,255,255,.85); flex-shrink:0; }
+    .ribbon-dot { width:3px; height:3px; background:rgba(255,255,255,.5); border-radius:50%; }
+    @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ─── SECTION HELPERS ─── */
+    .sec-label {
+      font-size:.63rem; font-weight:700; letter-spacing:.38em; text-transform:uppercase;
+      color:var(--c-gold); display:flex; align-items:center; gap:.7rem; margin-bottom:1.25rem;
+    }
+    .sec-label::before { content:''; width:28px; height:1px; background:var(--c-gold); flex-shrink:0; }
+    .sec-title { font-family:var(--ff-title); font-size:clamp(2rem,3.2vw,2.9rem); font-weight:900; line-height:1.1; color:var(--c-text); margin-bottom:1.25rem; }
+    .sec-title em { font-style:italic; color:var(--c-bord); }
+    .gold-bar { width:52px; height:2px; background:var(--c-gold); margin:1.25rem 0; }
+    .gold-bar.center { margin-left:auto; margin-right:auto; }
+
+    /* ─── ABOUT ─── */
+    .about { display:grid; grid-template-columns:1fr 1fr; }
+    .about-img {
+      position:relative; min-height:560px; overflow:hidden;
+      background-size:cover; background-position:center;
+      background-color:var(--c-bg3);
+      transition:background-size .7s ease;
+    }
+    .about-img:hover { background-size:104%; }
+    .about-img-quote {
+      position:absolute; bottom:2rem; right:-1.5rem;
+      background:var(--c-bord); color:#fff;
+      padding:1.25rem 1.75rem; font-family:var(--ff-italic); font-style:italic;
+      font-size:1rem; max-width:210px; line-height:1.5; z-index:2;
+    }
+    .about-body { padding:5rem; display:flex; flex-direction:column; justify-content:center; background:var(--c-bg); }
+    .about-text { font-size:.95rem; line-height:1.9; color:var(--c-dim); margin-bottom:1.1rem; font-weight:300; }
+    .about-text strong { color:var(--c-text); font-weight:400; }
+    .about-stats { display:flex; gap:2.5rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--c-line); }
+    .stat-n { font-family:var(--ff-title); font-size:2.4rem; font-weight:900; color:var(--c-bord); line-height:1; }
+    .stat-l { font-size:.65rem; letter-spacing:.15em; text-transform:uppercase; color:var(--c-muted); margin-top:4px; }
+
+    /* ─── MENU ─── */
+    .menu-sec { padding:6rem 5rem; background:var(--c-bg2); position:relative; overflow:hidden; }
+    .menu-sec::before {
+      content:'CARTE'; position:absolute; right:-1rem; top:50%; transform:translateY(-50%);
+      font-family:var(--ff-title); font-size:clamp(7rem,14vw,16rem); font-weight:900;
+      color:rgba(26,18,9,.04); pointer-events:none; line-height:1; user-select:none;
+    }
+    .menu-head { text-align:center; margin-bottom:3.5rem; }
+    .menu-tabs {
+      display:flex; width:fit-content; margin:2rem auto 0;
+      border:1.5px solid var(--c-lineg); border-radius:2px; overflow:hidden;
+    }
+    .mtab {
+      font-size:.68rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+      padding:.85rem 2rem; cursor:pointer; border:none; background:transparent;
+      color:var(--c-muted); transition:all .3s; min-height:44px; font-family:var(--ff-body);
+    }
+    .mtab.on { background:var(--c-bord); color:#fff; }
+    .mtab:not(.on):hover { color:var(--c-bord); }
+    .mpanel { display:none; }
+    .mpanel.on { display:block; }
+    .menu-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1px; background:var(--c-line); border:1px solid var(--c-line); border-radius:2px; overflow:hidden;
+    }
+    .mitem {
+      background:var(--c-card); padding:1.75rem;
+      transition:background .25s; position:relative;
+    }
+    .mitem:hover { background:#FBF7F0; }
+    .mitem-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:.5rem; }
+    .mitem-name { font-family:var(--ff-title); font-size:1.05rem; font-weight:700; color:var(--c-text); line-height:1.2; }
+    .mitem-price { font-family:var(--ff-title); font-size:1.05rem; font-weight:700; color:var(--c-bord); white-space:nowrap; }
+    .mitem-desc { font-family:var(--ff-italic); font-style:italic; font-size:.85rem; line-height:1.65; color:var(--c-muted); }
+    .mitem-tag {
+      display:inline-block; margin-top:.7rem;
+      font-size:.58rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--c-gold); border:1px solid var(--c-lineg); padding:2px 8px; border-radius:2px;
+    }
+    .mitem-dot {
+      position:absolute; top:1.1rem; right:1.1rem; width:5px; height:5px;
+      background:var(--c-bord); border-radius:50%; opacity:0; transition:opacity .25s;
+    }
+    .mitem:hover .mitem-dot { opacity:1; }
+
+    /* ─── GALLERY ─── */
+    .gallery { padding:5rem 0; background:var(--c-bg); }
+    .gallery-head { text-align:center; padding:0 5rem; margin-bottom:2.5rem; }
+    .gallery-grid {
+      display:grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 300px 300px;
+      gap:5px;
+    }
+    .gitem {
+      overflow:hidden; position:relative;
+      background-size:cover; background-position:center;
+      background-color:var(--c-bg3);
+      transition:background-size .65s ease, filter .65s ease;
+      filter:brightness(.92);
+    }
+    .gitem:first-child { grid-row:span 2; }
+    .gitem:hover { filter:brightness(1); background-size:106%; }
+    .gitem:hover img { transform:scale(1.06); filter:brightness(1); }
+    .gitem-caption {
+      position:absolute; bottom:0; left:0; right:0;
+      background:linear-gradient(to top, rgba(26,18,9,.65) 0%, transparent 100%);
+      padding:1.5rem 1.25rem .9rem;
+      font-family:var(--ff-italic); font-style:italic; font-size:.95rem; color:#fff;
+      opacity:0; transform:translateY(6px); transition:opacity .35s, transform .35s;
+    }
+    .gitem:hover .gitem-caption { opacity:1; transform:none; }
+
+    /* ─── CHEF / EXPERIENCE ─── */
+    .chef-sec {
+      display:grid; grid-template-columns:1fr 1fr;
+      background:var(--c-bg2);
+      min-height:850px;
+    }
+    .chef-img {
+      position:relative; overflow:hidden; min-height:850px;
+      background-size:cover; background-position:center center;
+      filter:brightness(.88); background-color:var(--c-bg3);
+    }
+    .chef-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to right, transparent 65%, var(--c-bg2) 100%); }
+    .chef-body {
+      display:flex; flex-direction:column; justify-content:center;
+      padding:5rem; background:var(--c-bg2);
+    }
+    .chef-text { font-size:.95rem; line-height:1.9; color:var(--c-dim); font-weight:300; margin-bottom:1.1rem; }
+    .chef-text strong { color:var(--c-text); font-weight:400; }
+    .chef-sig { font-family:var(--ff-italic); font-style:italic; font-size:2rem; font-weight:300; color:var(--c-bord); margin-top:1.5rem; }
+    .chef-role { font-size:.62rem; letter-spacing:.28em; text-transform:uppercase; color:var(--c-muted); margin-top:.35rem; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testi-sec { padding:6rem 5rem; background:var(--c-bg); }
+    .testi-head { text-align:center; margin-bottom:3.5rem; }
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .tcard {
+      background:var(--c-card); border:1px solid var(--c-line); border-radius:4px; padding:2rem;
+      position:relative; transition:transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .tcard:hover { transform:translateY(-5px); box-shadow:0 16px 48px rgba(26,18,9,.07); border-color:var(--c-lineg); }
+    .tcard::before {
+      content:'\201C'; position:absolute; top:.75rem; right:1.25rem;
+      font-family:var(--ff-title); font-size:4rem; color:rgba(139,26,46,.08); line-height:1;
+    }
+    .tstars { color:#F5A623; font-size:.8rem; letter-spacing:2px; margin-bottom:.85rem; }
+    .ttext { font-family:var(--ff-italic); font-style:italic; font-size:.92rem; line-height:1.8; color:var(--c-dim); margin-bottom:1.25rem; }
+    .tauthor { display:flex; align-items:center; gap:.75rem; }
+    .tavatar {
+      width:36px; height:36px; border-radius:50%;
+      background:var(--c-bg2); border:1px solid var(--c-lineg);
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--ff-title); font-size:.8rem; font-weight:700; color:var(--c-bord); flex-shrink:0;
+    }
+    .tname { font-size:.8rem; font-weight:700; color:var(--c-text); }
+    .tmeta { font-size:.7rem; color:var(--c-muted); margin-top:2px; }
+
+    /* ─── RESERVATION ─── */
+    .resa-sec { display:grid; grid-template-columns:1fr 1fr; gap:5rem; padding:6rem 5rem; background:var(--c-bg2); align-items:center; }
+    .resa-text { font-size:.95rem; line-height:1.8; color:var(--c-dim); font-weight:300; margin-bottom:1.75rem; }
+    .resa-phone { display:flex; align-items:center; gap:1rem; text-decoration:none; margin-bottom:1.5rem; }
+    .phone-icon {
+      width:52px; height:52px; border-radius:50%;
+      background:var(--c-bg3); border:1px solid var(--c-lineg);
+      display:flex; align-items:center; justify-content:center; font-size:1.25rem;
+      flex-shrink:0; transition:all .3s;
+    }
+    .resa-phone:hover .phone-icon { background:var(--c-bord); border-color:var(--c-bord); }
+    .phone-num { font-family:var(--ff-title); font-size:1.9rem; font-weight:700; color:var(--c-text); transition:color .3s; }
+    .resa-phone:hover .phone-num { color:var(--c-bord); }
+    .phone-lbl { font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--c-muted); }
+    .hours-block { border-top:1px solid var(--c-line); padding-top:1.5rem; margin-top:1.5rem; }
+    .hours-title { font-size:.65rem; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--c-gold); margin-bottom:.85rem; }
+    .hrow { display:flex; justify-content:space-between; padding:.45rem 0; border-bottom:1px solid rgba(26,18,9,.04); font-size:.83rem; }
+    .hrow .day { color:var(--c-dim); }
+    .hrow .time { color:var(--c-text); font-weight:400; }
+    .hrow .closed { color:var(--c-muted); font-style:italic; }
+    .resa-map { border-radius:4px; overflow:hidden; border:1px solid var(--c-line); height:460px; position:relative; }
+    .resa-map iframe { width:100%; height:100%; border:none; display:block; filter:sepia(.15) saturate(.9) brightness(1.05); }
+    .map-card {
+      position:absolute; bottom:1.25rem; left:1.25rem;
+      background:rgba(254,251,246,.95); backdrop-filter:blur(8px);
+      border:1px solid var(--c-lineg); padding:1.1rem 1.4rem; border-radius:4px;
+    }
+    .map-name { font-family:var(--ff-title); font-size:1rem; font-weight:700; color:var(--c-text); margin-bottom:.3rem; }
+    .map-addr { font-size:.78rem; color:var(--c-muted); }
+
+    /* ─── FOOTER ─── */
+    footer { background:#1A1209; border-top:3px solid var(--c-bord); }
+    .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; padding:3.5rem 5rem 2.5rem; }
+    .fbrand-name { font-family:var(--ff-title); font-size:1.5rem; font-weight:900; color:var(--c-gold-l); letter-spacing:.1em; text-transform:uppercase; }
+    .fbrand-sub { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.3); margin:.35rem 0 .85rem; }
+    .fbrand-addr { font-size:.82rem; line-height:1.75; color:rgba(255,255,255,.4); }
+    .fbrand-addr a { color:var(--c-gold-l); text-decoration:none; }
+    .fsoc { display:flex; gap:.6rem; margin-top:1rem; }
+    .fsoc a {
+      width:34px; height:34px; border:1px solid rgba(255,255,255,.12); border-radius:50%;
+      display:flex; align-items:center; justify-content:center; font-size:.85rem;
+      color:rgba(255,255,255,.4); text-decoration:none; transition:all .3s;
+    }
+    .fsoc a:hover { border-color:var(--c-gold-l); color:var(--c-gold-l); }
+    .fcol-title { font-size:.6rem; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:var(--c-gold-l); margin-bottom:1.1rem; }
+    .flinks { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
+    .flinks a { font-size:.82rem; color:rgba(255,255,255,.4); text-decoration:none; transition:color .3s; }
+    .flinks a:hover { color:rgba(255,255,255,.85); }
+    .footer-bot {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1.25rem 5rem; border-top:1px solid rgba(255,255,255,.06);
+      font-size:.72rem; color:rgba(255,255,255,.25);
+    }
+    .footer-bot a { color:var(--c-gold-l); text-decoration:none; font-weight:700; }
+
+    /* ─── FLOATING MOBILE ─── */
+    .float-cta { display:none; position:fixed; bottom:1.25rem; left:50%; transform:translateX(-50%); z-index:200; gap:.6rem; }
+    .fbtn {
+      display:flex; align-items:center; gap:.45rem; padding:.85rem 1.4rem; border-radius:50px;
+      font-size:.78rem; font-weight:700; text-decoration:none; white-space:nowrap;
+      min-height:48px; box-shadow:0 6px 24px rgba(0,0,0,.2); font-family:var(--ff-body);
+    }
+    .fbtn.call { background:var(--c-bord); color:#fff; }
+    .fbtn.wa { background:#25D366; color:#fff; }
+
+    /* ─── MOBILE NAV ─── */
+    .mnav {
+      position:fixed; inset:0; background:rgba(254,251,246,.98); backdrop-filter:blur(16px);
+      z-index:150; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:2.25rem; opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .mnav.open { opacity:1; pointer-events:all; }
+    .mnav a { font-family:var(--ff-title); font-size:2rem; font-weight:700; color:var(--c-text); text-decoration:none; transition:color .25s; }
+    .mnav a:hover { color:var(--c-bord); }
+    .mnav .mcta { font-size:1rem; background:var(--c-bord); color:#fff; padding:.85rem 2.5rem; border-radius:2px; }
+    .mnav-close { position:absolute; top:1.5rem; right:1.5rem; font-size:1.5rem; background:none; border:none; color:var(--c-text); cursor:pointer; }
+
+    /* ─── RESPONSIVE TABLET ─── */
+    @media (max-width:1024px) {
+      nav, nav.stuck { padding-left:2rem; padding-right:2rem; }
+      .hero-left { padding:7rem 3rem 4rem; }
+      .about-body { padding:3rem; }
+      .chef-body, .menu-sec, .testi-sec { padding:4rem 3rem; }
+      .resa-sec { padding:4rem 3rem; gap:3rem; }
+      .footer-top { padding:3rem; }
+      .footer-bot { padding:1.25rem 3rem; }
+    }
+
+    /* ─── RESPONSIVE MOBILE ─── */
+    @media (max-width:900px) {
+
+      /* NAV — toujours visible sur mobile */
+      nav {
+        background:rgba(254,251,246,.96);
+        backdrop-filter:blur(12px);
+        padding:.9rem 1.25rem;
+        box-shadow:0 1px 0 var(--c-line);
+      }
+      nav.stuck { padding:.9rem 1.25rem; }
+      .nav-logo-name { font-size:1.05rem; }
+      .nav-logo-sub { display:none; }
+      .nav-links, .nav-cta { display:none; }
+      .nav-burger { display:flex; }
+
+      /* HERO — plein écran, image derrière, texte par-dessus */
+      .hero {
+        grid-template-columns:1fr;
+        grid-template-rows:1fr;
+        min-height:100svh;
+        position:relative;
+        overflow:hidden;
+      }
+      .hero-right {
+        position:absolute; inset:0;
+        min-height:100%; height:100%;
+        order:1;
+      }
+      /* Gradient fort en bas pour lisibilité du texte */
+      .hero-right::before {
+        background:linear-gradient(
+          to top,
+          var(--c-bg) 0%,
+          rgba(254,251,246,.85) 35%,
+          rgba(254,251,246,.2) 65%,
+          transparent 100%
+        );
+      }
+      .hero-right::after { display:none; }
+      .hero-left {
+        position:relative; z-index:2; order:2;
+        padding:5.5rem 1.5rem 6rem;
+        background:transparent;
+        min-height:100svh;
+        display:flex; flex-direction:column; justify-content:flex-end;
+      }
+      .hero-eyebrow { font-size:.6rem; margin-bottom:1.25rem; }
+      h1.hero-title { font-size:clamp(2.6rem,9vw,3.5rem); margin-bottom:.6rem; }
+      .hero-sub { font-size:.95rem; margin-bottom:1.75rem; max-width:100%; }
+      .hero-actions { flex-direction:column; gap:.75rem; }
+      .btn-prim, .btn-sec { width:100%; justify-content:center; font-size:.8rem; padding:.9rem 1.5rem; }
+      .hero-social-proof { margin-top:1.75rem; padding-top:1.5rem; flex-wrap:wrap; gap:.75rem; }
+      .hero-badge { bottom:1rem; right:1rem; padding:.85rem 1rem; }
+      .hero-badge-n { font-size:1.5rem; }
+
+      /* SECTIONS */
+      .about, .chef-sec { grid-template-columns:1fr; }
+      .about-img { min-height:300px; order:-1; }
+      .about-img-quote { right:0; font-size:.9rem; padding:1rem 1.25rem; max-width:200px; }
+      .about-body { padding:2rem 1.25rem; }
+      .chef-img { min-height:300px; order:-1; }
+      .chef-img::after { background:linear-gradient(to top, var(--c-bg2) 0%, transparent 60%); }
+      .chef-body { padding:2rem 1.25rem; }
+      .about-stats { flex-wrap:wrap; gap:1.5rem; }
+      .stat-n { font-size:2rem; }
+
+      /* MENU */
+      .menu-sec { padding:3rem 1.25rem; }
+      .menu-sec::before { display:none; }
+      .menu-tabs { width:100%; }
+      .mtab { flex:1; padding:.75rem .5rem; font-size:.62rem; }
+      .menu-grid { grid-template-columns:1fr; }
+
+      /* GALLERY */
+      .gallery-head { padding:0 1.25rem; }
+      .gallery-grid {
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:200px 200px;
+      }
+      .gitem:first-child { grid-row:span 1; grid-column:span 2; height:240px; }
+
+      /* TESTIMONIALS */
+      .testi-sec { padding:3rem 1.25rem; }
+      .testi-grid { grid-template-columns:1fr; gap:1rem; }
+
+      /* RESERVATION */
+      .resa-sec { grid-template-columns:1fr; gap:1.5rem; padding:3rem 1.25rem; }
+      .resa-map { height:260px; }
+      .phone-num { font-size:1.5rem; }
+
+      /* FOOTER */
+      .footer-top { grid-template-columns:1fr 1fr; gap:1.5rem; padding:2rem 1.25rem; }
+      .footer-bot { flex-direction:column; gap:.5rem; padding:1rem 1.25rem; text-align:center; font-size:.65rem; }
+
+      /* FLOATING CTA */
+      .float-cta { display:flex; }
+    }
+
+    /* ─── RESPONSIVE PETIT MOBILE ─── */
+    @media (max-width:480px) {
+      h1.hero-title { font-size:2.4rem; }
+      .hero-sub { font-size:.88rem; }
+      .gallery-grid { grid-template-columns:1fr; grid-template-rows:none; }
+      .gitem:first-child { grid-column:span 1; height:220px; }
+      .gitem { height:160px; }
+      .footer-top { grid-template-columns:1fr; }
+      .section-label, .sec-label { font-size:.58rem; }
+      .ribbon-track { gap:2rem; }
+      .ribbon-item { font-size:.58rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="nav-logo">
+    <span class="nav-logo-name">Maison Rivière</span>
+    <span class="nav-logo-sub">Restaurant Gastronomique · Saint-Avold</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#histoire">Notre Histoire</a></li>
+    <li><a href="#menu">La Carte</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:0387000000" class="nav-cta">📞 Réserver</a>
+  <div class="nav-burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mnav" id="mnav">
+  <button class="mnav-close" id="mclose">✕</button>
+  <a href="#histoire" class="mlink">Notre Histoire</a>
+  <a href="#menu" class="mlink">La Carte</a>
+  <a href="#galerie" class="mlink">Galerie</a>
+  <a href="#contact" class="mlink">Contact</a>
+  <a href="tel:0387000000" class="mcta">📞 03 87 00 00 00</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Depuis 1987 · Saint-Avold · Moselle</p>
+    <h1 class="hero-title">Maison<em>Rivière</em></h1>
+    <p class="hero-sub">La cuisine du terroir lorrain revisitée avec soin.<br>Des saveurs qui font revenir, chaque semaine.</p>
+    <div class="hero-actions">
+      <a href="tel:0387000000" class="btn-prim">📞 Réserver ma table</a>
+      <a href="#menu" class="btn-sec">Voir la carte →</a>
+    </div>
+    <div class="hero-social-proof">
+      <div>
+        <div class="gstars">★★★★★</div>
+        <div class="gtext"><strong>4.9</strong> · 214 avis Google</div>
+      </div>
+      <div class="hero-sep"></div>
+      <div class="gtext">
+        <div style="color:var(--c-text);font-weight:700">Meilleur restaurant</div>
+        <div>de Saint-Avold</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&q=90&fit=crop')" role="img" aria-label="Ambiance Maison Rivière — Restaurant gastronomique Saint-Avold">
+    <div class="hero-badge">
+      <div class="hero-badge-n">37</div>
+      <span class="hero-badge-l">ans d'histoire</span>
+    </div>
+  </div>
+</section>
+
+<!-- RUBAN -->
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Produits frais du marché</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Cave à vins sélectionnée</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Formule déjeuner dès 19€</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Terrasse ouverte en été</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Privatisation possible</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Fait maison chaque jour</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Produits frais du marché</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Cave à vins sélectionnée</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Formule déjeuner dès 19€</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Terrasse ouverte en été</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Privatisation possible</div>
+    <div class="ribbon-item"><span class="ribbon-dot"></span>Fait maison chaque jour</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="histoire">
+  <div class="about-img" data-r="l" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=85&fit=crop&auto=format')" role="img" aria-label="Salle de Maison Rivière — Restaurant à Saint-Avold">
+    <div class="about-img-quote">"Cuisiner, c'est raconter une histoire avec des saveurs."</div>
+  </div>
+  <div class="about-body">
+    <p class="sec-label" data-r>Notre Histoire</p>
+    <h2 class="sec-title" data-r>Une table <em>familiale</em><br>depuis 37 ans</h2>
+    <div class="gold-bar" data-r></div>
+    <p class="about-text" data-r>En 1987, <strong>Georges Rivière</strong> ouvre sa première table dans une ancienne ferme lorraine. Sa philosophie : <strong>cuisiner ce que la terre offre</strong>, saison par saison, sans compromis.</p>
+    <p class="about-text" data-r>Aujourd'hui, son fils <strong>Lucas Rivière</strong> perpétue cette tradition avec une touche moderne. Les légumes viennent du maraîcher voisin, les viandes de l'éleveur de Behren-lès-Forbach, les vins de vignerons indépendants. <strong>Rien n'est laissé au hasard.</strong></p>
+    <div class="about-stats" data-r>
+      <div><div class="stat-n" data-c="37">37</div><div class="stat-l">ans d'histoire</div></div>
+      <div><div class="stat-n" data-c="214">214</div><div class="stat-l">avis Google</div></div>
+      <div><div class="stat-n" data-c="3">3</div><div class="stat-l">générations</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-sec" id="menu">
+  <div class="menu-head">
+    <p class="sec-label" style="justify-content:center" data-r>La Carte</p>
+    <h2 class="sec-title" data-r>Ce que l'on vous <em>propose</em></h2>
+    <div class="gold-bar center" data-r></div>
+    <div class="menu-tabs" role="tablist">
+      <button class="mtab on" data-tab="ent" role="tab">Entrées</button>
+      <button class="mtab" data-tab="plat" role="tab">Plats</button>
+      <button class="mtab" data-tab="des" role="tab">Desserts</button>
+    </div>
+  </div>
+
+  <div class="mpanel on" id="ent">
+    <div class="menu-grid">
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Foie gras maison</h3><span class="mitem-price">18€</span></div><p class="mitem-desc">Torchon de foie gras de canard, chutney de figues rôties, brioche toastée au beurre noisette</p><span class="mitem-tag">Fait maison</span></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Velouté de champignons</h3><span class="mitem-price">12€</span></div><p class="mitem-desc">Velouté de cèpes et pleurotes, huile de truffe blanche, croûtons parmesan</p><span class="mitem-tag">Végétarien</span></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Tartare de saumon</h3><span class="mitem-price">15€</span></div><p class="mitem-desc">Saumon Label Rouge coupé au couteau, avocat, gingembre confit, sauce ponzu maison</p></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Assiette du maraîcher</h3><span class="mitem-price">11€</span></div><p class="mitem-desc">Légumes de saison rôtis, houmous maison, zaatar, huile d'olive de Provence</p><span class="mitem-tag">Vegan</span></div>
+    </div>
+  </div>
+
+  <div class="mpanel" id="plat">
+    <div class="menu-grid">
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Côte de bœuf Lorraine</h3><span class="mitem-price">38€</span></div><p class="mitem-desc">Côte maturée 45 jours, gratin dauphinois, jus corsé au vin rouge de Bourgogne</p><span class="mitem-tag">Signature</span></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Magret de canard</h3><span class="mitem-price">28€</span></div><p class="mitem-desc">Magret rosé, pommes sarladaises, sauce au miel et balsamique vieilli 12 ans</p></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Dos de cabillaud</h3><span class="mitem-price">26€</span></div><p class="mitem-desc">Cabillaud rôti sur peau, beurre blanc citronné, écrasé de pommes de terre à l'huile d'olive</p></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Risotto aux champignons</h3><span class="mitem-price">22€</span></div><p class="mitem-desc">Risotto carnaroli, mélange champignons des bois, parmesan 24 mois, truffe noire râpée en salle</p><span class="mitem-tag">Végétarien</span></div>
+    </div>
+  </div>
+
+  <div class="mpanel" id="des">
+    <div class="menu-grid">
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Soufflé au Grand Marnier</h3><span class="mitem-price">14€</span></div><p class="mitem-desc">Soufflé chaud à l'orange, glace vanille Bourbon de Madagascar, zestes confits</p><span class="mitem-tag">Signature</span></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Crème brûlée maison</h3><span class="mitem-price">9€</span></div><p class="mitem-desc">Crème brûlée à la vanille de Tahiti, caramel fin craquant, tuile au sésame</p></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Fondant Valrhona</h3><span class="mitem-price">10€</span></div><p class="mitem-desc">Fondant au chocolat 70%, cœur coulant, crème anglaise caramel beurre salé</p></div>
+      <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Plateau de fromages</h3><span class="mitem-price">12€</span></div><p class="mitem-desc">Sélection de notre fromagier : Munster fermier, Comté 18 mois, Époisses, pain toasté</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="galerie">
+  <div class="gallery-head">
+    <p class="sec-label" style="justify-content:center" data-r>Galerie</p>
+    <h2 class="sec-title" data-r>L'art dans <em>l'assiette</em></h2>
+  </div>
+  <div class="gallery-grid" data-r="s">
+    <div class="gitem" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=85&fit=crop&auto=format')" role="img" aria-label="Notre plat signature">
+      <div class="gitem-caption">Notre plat signature</div>
+    </div>
+    <div class="gitem" style="background-image:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80&fit=crop&auto=format')" role="img" aria-label="Foie gras maison">
+      <div class="gitem-caption">Foie gras maison</div>
+    </div>
+    <div class="gitem" style="background-image:url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80&fit=crop&auto=format')" role="img" aria-label="Notre cave à vins">
+      <div class="gitem-caption">Notre cave à vins</div>
+    </div>
+    <div class="gitem" style="background-image:url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80&fit=crop&auto=format')" role="img" aria-label="Plat du chef">
+      <div class="gitem-caption">Plat du chef</div>
+    </div>
+    <div class="gitem" style="background-image:url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&q=80&fit=crop&auto=format')" role="img" aria-label="Dessert du jour">
+      <div class="gitem-caption">Dessert du jour</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHEF -->
+<section class="chef-sec">
+  <div class="chef-img" style="background-image:url('https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=900&q=85&fit=crop&auto=format')" role="img" aria-label="Chef Lucas Rivière — Maison Rivière Saint-Avold"></div>
+  <div class="chef-body">
+    <p class="sec-label" data-r>Notre Chef</p>
+    <h2 class="sec-title" data-r>La <em>passion</em><br>au bout des doigts</h2>
+    <div class="gold-bar" data-r></div>
+    <p class="chef-text" data-r>Formé à Lyon, passé par Paris, <strong>Lucas Rivière</strong> est revenu en Moselle pour une raison simple : honorer les racines lorraines avec la rigueur de la grande cuisine française.</p>
+    <p class="chef-text" data-r>La carte change selon les arrivages du marché de Metz, les saisons et l'inspiration. Ce qui ne change pas : <strong>l'exigence absolue</strong>.</p>
+    <div data-r>
+      <div class="chef-sig">Lucas Rivière</div>
+      <div class="chef-role">Chef propriétaire · 3ème génération</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec">
+  <div class="testi-head">
+    <p class="sec-label" style="justify-content:center" data-r>Témoignages</p>
+    <h2 class="sec-title" data-r>Ce qu'ils <em>disent</em></h2>
+    <div class="gold-bar center" data-r></div>
+  </div>
+  <div class="testi-grid">
+    <blockquote class="tcard" data-r>
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"La côte de bœuf, c'est simplement la meilleure que j'ai mangée dans tout le Grand Est. La viande fond, le jus est parfait. On est venus exprès depuis Metz et on reviendra."</p>
+      <div class="tauthor"><div class="tavatar">TM</div><div><div class="tname">Thomas M.</div><div class="tmeta">Metz · il y a 2 semaines</div></div></div>
+    </blockquote>
+    <blockquote class="tcard" data-r style="transition-delay:.1s">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Notre anniversaire de mariage. Le chef est sorti en salle. Le soufflé au Grand Marnier... on en rêve encore 3 mois après. Merci pour ce moment magique."</p>
+      <div class="tauthor"><div class="tavatar">SL</div><div><div class="tname">Sarah & Laurent</div><div class="tmeta">Saint-Avold · habitués depuis 5 ans</div></div></div>
+    </blockquote>
+    <blockquote class="tcard" data-r style="transition-delay:.2s">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"12 personnes pour un repas d'entreprise. Tout était impeccable : accueil, service, qualité. La formule déjeuner est imbattable. On a notre table chaque trimestre."</p>
+      <div class="tauthor"><div class="tavatar">KB</div><div><div class="tname">Karim B.</div><div class="tmeta">Directeur commercial · Forbach</div></div></div>
+    </blockquote>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section class="resa-sec" id="contact">
+  <div>
+    <p class="sec-label" data-r>Réservation</p>
+    <h2 class="sec-title" data-r>Votre table<br>vous <em>attend</em></h2>
+    <div class="gold-bar" data-r></div>
+    <p class="resa-text" data-r>Pour garantir votre place, nous vous recommandons de réserver au moins 48h à l'avance, surtout le week-end et les jours fériés.</p>
+    <a href="tel:0387000000" class="resa-phone" data-r>
+      <div class="phone-icon">📞</div>
+      <div>
+        <div class="phone-num">03 87 00 00 00</div>
+        <div class="phone-lbl">Appel gratuit · Lun–Sam 10h–22h</div>
+      </div>
+    </a>
+    <div class="hours-block" data-r>
+      <div class="hours-title">Horaires d'ouverture</div>
+      <div class="hrow"><span class="day">Lundi</span><span class="closed">Fermé</span></div>
+      <div class="hrow"><span class="day">Mar – Ven</span><span class="time">12h–14h · 19h–22h</span></div>
+      <div class="hrow"><span class="day">Samedi</span><span class="time">12h–14h30 · 19h–22h30</span></div>
+      <div class="hrow"><span class="day">Dimanche</span><span class="time">12h–14h30</span></div>
+    </div>
+  </div>
+  <div class="resa-map" data-r="r">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.5!2d6.7025!3d49.1027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794d3b4a4f4a4f4%3A0x0!2sSaint-Avold%2C%2057500!5e0!3m2!1sfr!2sfr!4v1"
+      title="Localisation Maison Rivière — Saint-Avold"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+    <div class="map-card">
+      <div class="map-name">Maison Rivière</div>
+      <div class="map-addr">12 Rue du Général de Gaulle<br>57500 Saint-Avold</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="fbrand-name">Maison Rivière</div>
+      <div class="fbrand-sub">Restaurant Gastronomique · Saint-Avold</div>
+      <div class="fbrand-addr">12 Rue du Général de Gaulle<br>57500 Saint-Avold, Moselle<br><br><a href="tel:0387000000">03 87 00 00 00</a></div>
+      <div class="fsoc">
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Facebook">👍</a>
+        <a href="#" aria-label="TripAdvisor">🌍</a>
+      </div>
+    </div>
+    <div>
+      <div class="fcol-title">Navigation</div>
+      <ul class="flinks">
+        <li><a href="#histoire">Notre histoire</a></li>
+        <li><a href="#menu">La carte</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Réservation</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fcol-title">La carte</div>
+      <ul class="flinks">
+        <li><a href="#menu">Entrées</a></li>
+        <li><a href="#menu">Plats du jour</a></li>
+        <li><a href="#menu">Desserts</a></li>
+        <li><a href="#menu">Cave à vins</a></li>
+        <li><a href="#menu">Formule midi 19€</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fcol-title">Infos pratiques</div>
+      <ul class="flinks">
+        <li><a href="#contact">Horaires</a></li>
+        <li><a href="#contact">Accès & parking</a></li>
+        <li><a href="#">Privatisation</a></li>
+        <li><a href="#">Menus groupes</a></li>
+        <li><a href="#">Carte cadeau</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© 2024 Maison Rivière · Restaurant gastronomique à Saint-Avold (57500) · Moselle</span>
+    <span>Site réalisé par <a href="#">Eclat Boutique</a></span>
+  </div>
+</footer>
+
+<!-- CTA MOBILE FLOTTANT -->
+<div class="float-cta">
+  <a href="tel:0387000000" class="fbtn call">📞 Appeler</a>
+  <a href="https://wa.me/33600000000" class="fbtn wa">💬 WhatsApp</a>
+</div>
+
+<script>
+  // Navbar scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 50), {passive:true});
+
+  // Reveal
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); } });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'})
+  .observe = (() => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); } });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('[data-r]').forEach(el => obs.observe(el));
+  })();
+
+  // Counters
+  const cObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('[data-c]').forEach(el => {
+        const target = +el.dataset.c, t0 = performance.now();
+        const tick = (t) => {
+          const p = Math.min((t - t0) / 1800, 1);
+          el.textContent = Math.round((1 - Math.pow(1-p, 3)) * target);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+      cObs.unobserve(e.target);
+    });
+  }, {threshold:.5});
+  const stats = document.querySelector('.about-stats');
+  if (stats) cObs.observe(stats);
+
+  // Tabs
+  document.querySelectorAll('.mtab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.mtab').forEach(t => t.classList.remove('on'));
+      document.querySelectorAll('.mpanel').forEach(p => p.classList.remove('on'));
+      tab.classList.add('on');
+      document.getElementById(tab.dataset.tab).classList.add('on');
+    });
+  });
+
+  // Mobile nav
+  const mnav = document.getElementById('mnav');
+  const tog = open => { mnav.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; };
+  document.getElementById('burger').addEventListener('click', () => tog(true));
+  document.getElementById('mclose').addEventListener('click', () => tog(false));
+  document.querySelectorAll('.mlink').forEach(l => l.addEventListener('click', () => tog(false)));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+</script>
+</body>
+</html>
