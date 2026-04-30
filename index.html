@@ -40,6 +40,7 @@
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { font-family:var(--ff-body); background:var(--c-bg); color:var(--c-text); overflow-x:hidden; }
+    :focus-visible { outline:2px solid var(--c-bord); outline-offset:3px; border-radius:2px; }
 
     /* Grain subtil */
     body::after {
@@ -78,7 +79,7 @@
       text-decoration:none; transition:background .3s, transform .3s;
     }
     .nav-cta:hover { background:#6B1223; transform:translateY(-1px); }
-    .nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
     .nav-burger span { width:24px; height:1.5px; background:var(--c-text); display:block; }
 
     /* ─── HERO ─── */
@@ -97,7 +98,7 @@
     .hero-eyebrow::before { content:''; width:32px; height:1px; background:var(--c-gold); flex-shrink:0; }
     h1.hero-title {
       font-family:var(--ff-title); font-size:clamp(3.2rem,5.5vw,6rem);
-      font-weight:900; line-height:.95; letter-spacing:-.02em; color:var(--c-text); margin-bottom:.8rem;
+      font-weight:900; line-height:.95; letter-spacing:-.02em; color:var(--c-text); margin-bottom:.8rem; text-wrap:balance;
     }
     h1.hero-title em { font-style:italic; color:var(--c-bord); display:block; }
     .hero-sub {
@@ -110,14 +111,14 @@
       display:inline-flex; align-items:center; gap:.5rem;
       font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
       color:#fff; background:var(--c-bord); padding:1rem 2rem; border-radius:2px;
-      text-decoration:none; min-height:48px; transition:all .3s cubic-bezier(.34,1.56,.64,1);
+      text-decoration:none; min-height:48px; transition:background .3s cubic-bezier(.34,1.56,.64,1), transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s cubic-bezier(.34,1.56,.64,1);
     }
     .btn-prim:hover { background:#6B1223; transform:translateY(-3px); box-shadow:0 12px 32px rgba(139,26,46,.25); }
     .btn-sec {
       display:inline-flex; align-items:center; gap:.5rem;
       font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
       color:var(--c-text); border:1.5px solid var(--c-line); padding:1rem 2rem; border-radius:2px;
-      text-decoration:none; min-height:48px; transition:all .3s;
+      text-decoration:none; min-height:48px; transition:border-color .3s, color .3s;
     }
     .btn-sec:hover { border-color:var(--c-bord); color:var(--c-bord); }
     .hero-social-proof {
@@ -169,7 +170,7 @@
       color:var(--c-gold); display:flex; align-items:center; gap:.7rem; margin-bottom:1.25rem;
     }
     .sec-label::before { content:''; width:28px; height:1px; background:var(--c-gold); flex-shrink:0; }
-    .sec-title { font-family:var(--ff-title); font-size:clamp(2rem,3.2vw,2.9rem); font-weight:900; line-height:1.1; color:var(--c-text); margin-bottom:1.25rem; }
+    .sec-title { font-family:var(--ff-title); font-size:clamp(2rem,3.2vw,2.9rem); font-weight:900; line-height:1.1; color:var(--c-text); margin-bottom:1.25rem; text-wrap:balance; }
     .sec-title em { font-style:italic; color:var(--c-bord); }
     .gold-bar { width:52px; height:2px; background:var(--c-gold); margin:1.25rem 0; }
     .gold-bar.center { margin-left:auto; margin-right:auto; }
@@ -180,9 +181,7 @@
       position:relative; min-height:560px; overflow:hidden;
       background-size:cover; background-position:center;
       background-color:var(--c-bg3);
-      transition:background-size .7s ease;
     }
-    .about-img:hover { background-size:104%; }
     .about-img-quote {
       position:absolute; bottom:2rem; right:-1.5rem;
       background:var(--c-bord); color:#fff;
@@ -254,12 +253,8 @@
       overflow:hidden; position:relative;
       background-size:cover; background-position:center;
       background-color:var(--c-bg3);
-      transition:background-size .65s ease, filter .65s ease;
-      filter:brightness(.92);
     }
     .gitem:first-child { grid-row:span 2; }
-    .gitem:hover { filter:brightness(1); background-size:106%; }
-    .gitem:hover img { transform:scale(1.06); filter:brightness(1); }
     .gitem-caption {
       position:absolute; bottom:0; left:0; right:0;
       background:linear-gradient(to top, rgba(26,18,9,.65) 0%, transparent 100%);
@@ -502,6 +497,13 @@
       .float-cta { display:flex; }
     }
 
+    /* ─── REDUCED MOTION ─── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration:.01ms !important; animation-duration:.01ms !important; }
+      [data-r] { opacity:1; transform:none; }
+      .ribbon-track { animation:none; }
+    }
+
     /* ─── RESPONSIVE PETIT MOBILE ─── */
     @media (max-width:480px) {
       h1.hero-title { font-size:2.4rem; }
@@ -531,12 +533,12 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="tel:XXXXXXXXXX" class="nav-cta">📞 Réserver</a>
-  <div class="nav-burger" id="burger"><span></span><span></span><span></span></div>
+  <button class="nav-burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE NAV -->
-<div class="mnav" id="mnav">
-  <button class="mnav-close" id="mclose">✕</button>
+<div class="mnav" id="mnav" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu de navigation">
+  <button class="mnav-close" id="mclose" aria-label="Fermer le menu">✕</button>
   <a href="#histoire" class="mlink">Notre Histoire</a>
   <a href="#menu" class="mlink">La Carte</a>
   <a href="#galerie" class="mlink">Galerie</a>
@@ -617,14 +619,14 @@
     <p class="sec-label" style="justify-content:center" data-r>La Carte</p>
     <h2 class="sec-title" data-r>Ce que l'on vous <em>propose</em></h2>
     <div class="gold-bar center" data-r></div>
-    <div class="menu-tabs" role="tablist">
-      <button class="mtab on" data-tab="ent" role="tab">Entrées</button>
-      <button class="mtab" data-tab="plat" role="tab">Plats</button>
-      <button class="mtab" data-tab="des" role="tab">Desserts</button>
+    <div class="menu-tabs" role="tablist" aria-label="Sections du menu">
+      <button class="mtab on" data-tab="ent" role="tab" aria-selected="true" aria-controls="ent" id="tab-ent">Entrées</button>
+      <button class="mtab" data-tab="plat" role="tab" aria-selected="false" aria-controls="plat" id="tab-plat">Plats</button>
+      <button class="mtab" data-tab="des" role="tab" aria-selected="false" aria-controls="des" id="tab-des">Desserts</button>
     </div>
   </div>
 
-  <div class="mpanel on" id="ent">
+  <div class="mpanel on" id="ent" role="tabpanel" aria-labelledby="tab-ent">
     <div class="menu-grid">
       <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Foie gras maison</h3><span class="mitem-price">18€</span></div><p class="mitem-desc">Torchon de foie gras de canard, chutney de figues rôties, brioche toastée au beurre noisette</p><span class="mitem-tag">Fait maison</span></div>
       <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Velouté de champignons</h3><span class="mitem-price">12€</span></div><p class="mitem-desc">Velouté de cèpes et pleurotes, huile de truffe blanche, croûtons parmesan</p><span class="mitem-tag">Végétarien</span></div>
@@ -633,7 +635,7 @@
     </div>
   </div>
 
-  <div class="mpanel" id="plat">
+  <div class="mpanel" id="plat" role="tabpanel" aria-labelledby="tab-plat">
     <div class="menu-grid">
       <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Côte de bœuf du terroir</h3><span class="mitem-price">38€</span></div><p class="mitem-desc">Côte maturée 45 jours, gratin dauphinois, jus corsé au vin rouge de Bourgogne</p><span class="mitem-tag">Signature</span></div>
       <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Magret de canard</h3><span class="mitem-price">28€</span></div><p class="mitem-desc">Magret rosé, pommes sarladaises, sauce au miel et balsamique vieilli 12 ans</p></div>
@@ -642,7 +644,7 @@
     </div>
   </div>
 
-  <div class="mpanel" id="des">
+  <div class="mpanel" id="des" role="tabpanel" aria-labelledby="tab-des">
     <div class="menu-grid">
       <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Soufflé au Grand Marnier</h3><span class="mitem-price">14€</span></div><p class="mitem-desc">Soufflé chaud à l'orange, glace vanille Bourbon de Madagascar, zestes confits</p><span class="mitem-tag">Signature</span></div>
       <div class="mitem"><div class="mitem-dot"></div><div class="mitem-top"><h3 class="mitem-name">Crème brûlée maison</h3><span class="mitem-price">9€</span></div><p class="mitem-desc">Crème brûlée à la vanille de Tahiti, caramel fin craquant, tuile au sésame</p></div>
@@ -708,7 +710,7 @@
     </blockquote>
     <blockquote class="tcard" data-r style="transition-delay:.1s">
       <div class="tstars">★★★★★</div>
-      <p class="ttext">"Notre anniversaire de mariage. Le chef est sorti en salle. Le soufflé au Grand Marnier... on en rêve encore 3 mois après. Merci pour ce moment magique."</p>
+      <p class="ttext">"Notre anniversaire de mariage. Le chef est sorti en salle. Le soufflé au Grand Marnier… on en rêve encore 3 mois après. Merci pour ce moment magique."</p>
       <div class="tauthor"><div class="tavatar">SL</div><div><div class="tname">Sarah & Laurent</div><div class="tmeta">Habitués depuis 5 ans</div></div></div>
     </blockquote>
     <blockquote class="tcard" data-r style="transition-delay:.2s">
@@ -846,19 +848,31 @@
   if (stats) cObs.observe(stats);
 
   // Tabs
+  const activateTab = (tabId) => {
+    document.querySelectorAll('.mtab').forEach(t => { t.classList.remove('on'); t.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.mpanel').forEach(p => p.classList.remove('on'));
+    const tab = document.querySelector(`.mtab[data-tab="${tabId}"]`);
+    if (tab) { tab.classList.add('on'); tab.setAttribute('aria-selected', 'true'); }
+    const panel = document.getElementById(tabId);
+    if (panel) panel.classList.add('on');
+    history.replaceState(null, '', `#menu-${tabId}`);
+  };
   document.querySelectorAll('.mtab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.mtab').forEach(t => t.classList.remove('on'));
-      document.querySelectorAll('.mpanel').forEach(p => p.classList.remove('on'));
-      tab.classList.add('on');
-      document.getElementById(tab.dataset.tab).classList.add('on');
-    });
+    tab.addEventListener('click', () => activateTab(tab.dataset.tab));
   });
+  const hashTab = location.hash.match(/^#menu-(\w+)$/);
+  if (hashTab) activateTab(hashTab[1]);
 
   // Mobile nav
   const mnav = document.getElementById('mnav');
-  const tog = open => { mnav.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; };
-  document.getElementById('burger').addEventListener('click', () => tog(true));
+  const burger = document.getElementById('burger');
+  const tog = open => {
+    mnav.classList.toggle('open', open);
+    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  burger.addEventListener('click', () => tog(true));
   document.getElementById('mclose').addEventListener('click', () => tog(false));
   document.querySelectorAll('.mlink').forEach(l => l.addEventListener('click', () => tog(false)));
 
